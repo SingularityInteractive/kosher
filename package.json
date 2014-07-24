@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/SingularityInteractive/kosher/issues"
   },
-  "homepage": "https://github.com/SingularityInteractive/kosher"
+  "homepage": "https://github.com/SingularityInteractive/kosher",
+  "engines": {
+    "node": "*"
+  }
 }

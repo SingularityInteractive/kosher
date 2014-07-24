@@ -1,5 +1,5 @@
 {
-    "jiraUrl": "http://singularity-interactive.com",
+    "jiraUrl": "http://jira.singularity-interactive.com",
     "jiraProject": "KOSH",
     "featuresPath": "features/",
     "featuresIssueType": "Epic",

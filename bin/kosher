@@ -12,16 +12,17 @@ var program = require('commander');
 
 program
   .version('0.0.1')
-  .usage('[options] [action] <config file ...>')
+  .usage('[options] [action: sync | config]')
   .option('-v, --verbose', 'Display details about synced features.')
   .option('-l, --list', 'List features.')
+  .option('-f, --file <filepath>', 'Config file path [kosher.json]')
   .parse(process.argv);
 
 if(program.args.length == 0) {
     program.args = ['sync'];
 }
 
-var configFilePath = (program.args.length > 1)?program.args[1]:'kosher.json';
+var configFilePath = (!!program.file)?program.file:'kosher.json';
 
 try {
     switch(program.args[0]) {
@@ -39,3 +40,5 @@ try {
 } catch(e) {
     throw('Error: '+e);
 }
+
+return 0;

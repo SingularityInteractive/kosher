@@ -5,6 +5,7 @@
     "featuresIssueType": "Epic",
     "featuresField": "Description",
     "scenarioRelationshipField": "Epic Link",
+    "scenarioField": "Description",
     "useLabelsAsTags": true,
     "useComponentsAsTags": true,
     "useVersionAsTags": false

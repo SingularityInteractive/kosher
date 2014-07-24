@@ -15,7 +15,7 @@
     "should": "latest"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -t 999999"
   },
   "repository": {
     "type": "git",

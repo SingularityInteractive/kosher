@@ -1,0 +1,11 @@
+{
+    "jiraUrl": "http://singularity-interactive.com",
+    "jiraProject": "KOSH",
+    "featuresPath": "features/",
+    "featuresIssueType": "Epic",
+    "featuresField": "Description",
+    "scenarioRelationshipField": "Epic Link",
+    "useLabelsAsTags": true,
+    "useComponentsAsTags": true,
+    "useVersionAsTags": false
+}

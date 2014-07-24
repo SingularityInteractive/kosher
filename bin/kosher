@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+"use strict";
+var path = require('path');
+var fs = require('fs');
+
+var lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib/');
+
+var Kosher = require(lib+'kosher.js').kosher;
+
+var program = require('commander');
+
+program
+  .version('0.0.1')
+  .usage('[options] [action] <config file ...>')
+  .option('-v, --verbose', 'Display details about synced features.')
+  .option('-l, --list', 'List features.')
+  .parse(process.argv);
+
+if(program.args.length == 0) {
+    program.args = ['sync'];
+}
+
+var configFilePath = (program.args.length > 1)?program.args[1]:'kosher.json';
+
+try {
+    switch(program.args[0]) {
+        case "config":
+        {
+            Kosher.config.configure(configFilePath);
+            break;
+        }
+        case "sync":
+        {
+            Kosher.sync(configFilePath);
+            break;
+        }
+    }
+} catch(e) {
+    throw('Error: '+e);
+}

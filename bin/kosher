@@ -28,17 +28,20 @@ try {
     switch(program.args[0]) {
         case "config":
         {
-            Kosher.config.configure(configFilePath);
+            Kosher.config.configure(configFilePath, function(result){
+                return result;
+            });
             break;
         }
         case "sync":
         {
-            Kosher.sync(configFilePath);
+            Kosher.sync(configFilePath, function(result){
+                return result;
+            });
             break;
         }
     }
 } catch(e) {
     throw('Error: '+e);
+    return 1;
 }
-
-return 0;

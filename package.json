@@ -17,7 +17,7 @@
     "should": "latest"
   },
   "scripts": {
-    "test": "mocha -t 0",
+    "test": "mocha -t 999999",
     "kosher": "./bin/kosher"
   },
   "repository": {

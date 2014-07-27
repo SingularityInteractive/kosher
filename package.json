@@ -8,7 +8,10 @@
   },
   "dependencies": {
     "commander": "~2.3.0",
-    "prompt": "~0.2.13"
+    "prompt": "~0.2.13",
+    "request": "~2.39.0",
+    "node-rest-client": "~1.0.0",
+    "rest": "~1.1.1"
   },
   "devDependencies": {
     "mocha": "latest",

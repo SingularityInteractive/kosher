@@ -16,6 +16,7 @@ program
   .option('-v, --verbose', 'Display details about synced features.')
   .option('-l, --list', 'List features.')
   .option('-f, --file <filepath>', 'Config file path [kosher.json]')
+  .option('-i, --issue <issue_id>', 'JIRA Issue to sync')
   .parse(process.argv);
 
 if(program.args.length == 0) {
@@ -23,6 +24,8 @@ if(program.args.length == 0) {
 }
 
 var configFilePath = (!!program.file)?program.file:'kosher.json';
+
+if(program.issue) process.env.ISSUE_KEY = program.issue;
 
 try {
     switch(program.args[0]) {

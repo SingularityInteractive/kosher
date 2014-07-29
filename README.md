@@ -6,12 +6,11 @@ A node.js tool for generating Gherkin-style BDD tests from JIRA.
 ## Installation
 
 To install globally:
-`$ npm install -g kosher`
-
-To install locally:
-`$ npm install --save-dev kosher`
+`$ npm install -g kosher` (may need sudo)
 
 ## Usage
+Quickstart:
+`$ kosher`
 
 ### JIRA
 The recommended pattern for using Kosher is to:

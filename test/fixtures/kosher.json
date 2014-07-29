@@ -8,5 +8,6 @@
     "scenarioField": "Acceptance Criteria",
     "useLabelsAsTags": true,
     "useComponentsAsTags": true,
-    "useVersionAsTags": false
+    "useVersionAsTags": false,
+    "useAssigneeAsTag": true
 }

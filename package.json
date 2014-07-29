@@ -1,6 +1,6 @@
 {
   "name": "kosher",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Gherkin/JIRA Automator",
   "main": "./lib/kosher.js",
   "bin": {
@@ -9,8 +9,7 @@
   "dependencies": {
     "commander": "~2.3.0",
     "prompt": "~0.2.13",
-    "rest": "~1.1.1",
-    "request": "~2.39.0"
+    "rest": "~1.1.1"
   },
   "devDependencies": {
     "mocha": "latest",

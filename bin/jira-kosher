@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+
+"use strict";
+var path = require('path');
+var fs = require('fs');
+
+var lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib/');
+
+var Kosher = require(lib+'kosher.js').kosher;
+
+var program = require('commander');
+
+program
+  .version('0.0.1')
+  .usage('[options] [action: sync | config]')
+  .option('-v, --verbose', 'Display details about synced features.')
+  .option('-l, --list', 'List features.')
+  .option('-f, --file <filepath>', 'Config file path [kosher.json]')
+  .option('-F, --feature <issue_key>', 'JIRA Feature Issue to sync')
+  .option('-S, --scenario <issue_key>', 'JIRA Scenario Issue to sync')
+  .option('-b, --createBranch <scenario_key>', 'Create a new branch for the issue')
+  .option('-B, --newBranchName <new_branch_name>', 'Name of new branch to create')
+  .option('-s, --sourceBranch <remote_branch_name>', 'Source branch to create a new branch from')
+  .option('-u, --username <jira_username>', 'JIRA Username')
+  .option('-p, --password <jira_password>', 'JIRA Password')
+  .parse(process.argv);
+
+if(program.args.length == 0) {
+    program.args = ['sync'];
+}
+
+var configFilePath = (!!program.file)?program.file:'kosher.json';
+
+if(program.feature) process.env.FEATURE_KEY = program.feature;
+if(program.scenario) process.env.SCENARIO_KEY = program.scenario;
+if(program.createBranch) process.env.CREATE_BRANCH = program.createBranch;
+if(program.newBranchName) process.env.NEW_BRANCH_NAME = program.newBranchName;
+if(program.sourceBranch) process.env.SOURCE_BRANCH = program.sourceBranch;
+if(program.username) process.env.JIRA_USERNAME = program.username;
+if(program.password) process.env.JIRA_PASSWORD = program.password;
+
+if(program.feature && program.scenario){
+  throw('Invalid option pair: You cannot use --feature and --scenario at the same time.');
+  return 1;
+}
+
+if(program.feature && program.createBranch){
+  throw('Invalid option pair: You cannot use --feature and --createBranch at the same time.');
+  return 1;
+}
+
+if(program.createBranch == 1 && !program.scenario){
+  throw('Missing parameter: You must specify a scenario key.');
+  return 1;
+}
+
+try {
+    switch(program.args[0]) {
+        case "config":
+        {
+            Kosher.config.configure(configFilePath, function(result){
+                return result;
+            });
+            break;
+        }
+        case "sync":
+        {
+            Kosher.sync(configFilePath, function(result){
+                return result;
+            });
+            break;
+        }
+    }
+} catch(e) {
+    throw('Error: '+e);
+    return 1;
+}

@@ -37,7 +37,7 @@ describe('Config Tests', function(){
     });
 
     describe('#configure', function() {
-        it('should allow the user to complete interactive configuration', function(done){
+        it.skip('should allow the user to complete interactive configuration', function(done){
             Kosher.config.configure(testConfigPath, function(){
                 console.log('Kosher configuration written to: '+testConfigPath);
                 for(var prop in Kosher.config.schema().properties) {

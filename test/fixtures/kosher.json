@@ -9,5 +9,6 @@
     "useLabelsAsTags": true,
     "useComponentsAsTags": true,
     "useVersionAsTags": false,
-    "useAssigneeAsTag": true
+    "useAssigneeAsTag": true,
+    "defaultSourceBranch": "origin/master"
 }

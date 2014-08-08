@@ -3,3 +3,4 @@ npm-debug.log
 tmp
 kosher.json
 features/*
+.env

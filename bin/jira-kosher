@@ -6,6 +6,9 @@ var fs = require('fs');
 
 var lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib/');
 
+var dotenv = require('dotenv');
+dotenv.load();
+
 var Kosher = require(lib+'kosher.js').kosher;
 
 var program = require('commander');

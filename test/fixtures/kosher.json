@@ -8,7 +8,7 @@
     "scenarioField": "Acceptance Criteria",
     "useLabelsAsTags": true,
     "useComponentsAsTags": true,
-    "useVersionAsTags": false,
+    "useVersionsAsTags": false,
     "useAssigneeAsTag": true,
     "defaultSourceBranch": "origin/master"
 }

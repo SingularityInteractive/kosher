@@ -1,7 +1,7 @@
 {
     "jiraUrl": "http://jira.singularity-interactive.com",
     "jiraProject": "KOSH",
-    "featuresPath": "features/",
+    "featuresPath": "test/features/",
     "featuresIssueType": "Epic",
     "featuresField": "Acceptance Criteria",
     "scenarioRelationshipField": "Epic Link",

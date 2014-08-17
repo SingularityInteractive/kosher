@@ -16,9 +16,13 @@ describe('Config Tests', function(){
     //     done();
     // });
 
-    // after(function(done){
-    //     done();
-    // })
+    after(function(done){
+        delete process.env.jiraUrl;
+        delete process.env.jiraProject;
+        delete process.env.featuresPath;
+
+        done();
+    });
 
     describe('#env', function() {
         it('should have booted into the test env', function(){
@@ -33,6 +37,24 @@ describe('Config Tests', function(){
                     Kosher.config.config().should.have.property(prop);
                 }
             }
+        });
+
+        it('should not load variables from kosher.js if they are already set in the process environment', function(){
+            process.env.jiraUrl = 'http://localhost';
+            process.env.jiraProject = 'TEST';
+            process.env.featuresPath = 'foo/features/';
+
+            if(Kosher.config.loadConfig(testConfigPath)){
+                var config = Kosher.config.config();
+
+                for(var prop in Kosher.config.schema().properties) {
+                    config.should.have.property(prop);
+                }
+
+                config.jiraUrl.should.equal(process.env.jiraUrl);
+                config.jiraProject.should.equal(process.env.jiraProject);
+                config.featuresPath.should.equal(process.env.featuresPath);
+            };
         });
     });
 

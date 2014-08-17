@@ -4,3 +4,4 @@ tmp
 kosher.json
 features/*
 .env
+test/features/*

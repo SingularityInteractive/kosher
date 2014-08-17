@@ -21,11 +21,14 @@ program
   .option('-f, --file <filepath>', 'Config file path [kosher.json]')
   .option('-F, --feature <issue_key>', 'JIRA Feature Issue to sync')
   .option('-S, --scenario <issue_key>', 'JIRA Scenario Issue to sync')
+  .option('-P, --project <project_key>', 'JIRA Project to sync')
   .option('-b, --createBranch <scenario_key>', 'Create a new branch for the issue')
   .option('-B, --newBranchName <new_branch_name>', 'Name of new branch to create')
   .option('-s, --sourceBranch <remote_branch_name>', 'Source branch to create a new branch from')
   .option('-u, --username <jira_username>', 'JIRA Username')
   .option('-p, --password <jira_password>', 'JIRA Password')
+  .option('-o, --origin <jira_url>', 'Origin (JIRA Url)')
+  .option('-d, --destination <features_path>', 'Destination for generated feature files')
   .parse(process.argv);
 
 if(program.args.length == 0) {
@@ -34,6 +37,7 @@ if(program.args.length == 0) {
 
 var configFilePath = (!!program.file)?program.file:'kosher.json';
 
+// specifier options
 if(program.feature) process.env.FEATURE_KEY = program.feature;
 if(program.scenario) process.env.SCENARIO_KEY = program.scenario;
 if(program.createBranch) process.env.CREATE_BRANCH = program.createBranch;
@@ -41,6 +45,11 @@ if(program.newBranchName) process.env.NEW_BRANCH_NAME = program.newBranchName;
 if(program.sourceBranch) process.env.SOURCE_BRANCH = program.sourceBranch;
 if(program.username) process.env.JIRA_USERNAME = program.username;
 if(program.password) process.env.JIRA_PASSWORD = program.password;
+
+// config override options
+if(program.project) process.env.jiraProject = program.project;
+if(program.origin) process.env.jiraUrl = program.origin;
+if(program.destination) process.env.featuresPath = program.destination;
 
 if(program.feature && program.scenario){
   throw('Invalid option pair: You cannot use --feature and --scenario at the same time.');

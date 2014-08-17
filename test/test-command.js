@@ -9,7 +9,7 @@ var fs = require('fs');
 
 var testConfigPath = 'test/fixtures/kosher.json';
 
-var bin = path.join(path.dirname(fs.realpathSync(__filename)), '../bin/');
+var bin = path.join(path.dirname(fs.realpathSync(__filename)), '../bin/jira-kosher --file test/fixtures/kosher.json');
 
 function cmd(command, callback, streamOutput){
     if(streamOutput){
@@ -38,7 +38,7 @@ function cmd(command, callback, streamOutput){
     }
 }
 
-describe('Sync Tests', function(){
+describe('Command Tests', function(){
 
     // before(function(done){
     //     done();
@@ -46,7 +46,7 @@ describe('Sync Tests', function(){
 
     // after(function(done){
     //     done();
-    // })
+    // });
 
     describe('#env', function() {
         it('should have booted into the test env', function(){
@@ -54,9 +54,9 @@ describe('Sync Tests', function(){
         });
     });
 
-    describe('#command', function() {
+    describe('#options', function() {
         it('should not allow --feature and --scenario to both be specified', function(done){
-            cmd(bin+'jira-kosher --feature KOSH-1 --scenario KOSH-3', function(result){
+            cmd(bin+' --feature KOSH-1 --scenario KOSH-3', function(result){
                 result.should.not.equal(0);
 
                 done();
@@ -64,7 +64,7 @@ describe('Sync Tests', function(){
         });
 
         it('should not allow --feature and --createBranch to both be specified', function(done){
-            cmd(bin+'jira-kosher --feature KOSH-1 --createBranch', function(result){
+            cmd(bin+' --feature KOSH-1 --createBranch', function(result){
                 result.should.not.equal(0);
 
                 done();
@@ -72,8 +72,16 @@ describe('Sync Tests', function(){
         });
 
         it('should not allow --createBranch without <scenario_key>', function(done){
-            cmd(bin+'jira-kosher --createBranch', function(result){
+            cmd(bin+' --createBranch', function(result){
                 result.should.not.equal(0);
+
+                done();
+            });
+        });
+
+        it('should override config with options', function(done){
+            cmd(bin+' --project KOSH --origin http://jira.singularity-interactive.com --destination test/features/withoptions', function(result){
+                result.should.equal(0);
 
                 done();
             });
@@ -82,15 +90,15 @@ describe('Sync Tests', function(){
 
     describe('#sync', function() {
         it('should sync features from JIRA', function(done){
-            cmd(bin+'jira-kosher', function(result){
+            cmd(bin, function(result){
                 result.should.equal(0);
 
                 done();
             });
         });
 
-        it.skip('should sync a single feature from JIRA', function(done){
-            cmd(bin+'jira-kosher --feature KOSH-1', function(result){
+        it('should sync a single feature from JIRA', function(done){
+            cmd(bin+' --feature KOSH-1', function(result){
                 result.should.equal(0);
 
                 done();
@@ -98,7 +106,7 @@ describe('Sync Tests', function(){
         });
 
         it.skip('should sync a single scenario from JIRA', function(done){
-            cmd(bin+'jira-kosher --scenario KOSH-3', function(result){
+            cmd(bin+' --scenario KOSH-3', function(result){
                 result.should.equal(0);
 
                 done();

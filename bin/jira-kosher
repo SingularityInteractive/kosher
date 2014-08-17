@@ -58,12 +58,12 @@ if(process.env.FEATURE_KEY && process.env.SCENARIO_KEY){
 }
 
 if(process.env.FEATURE_KEY && process.env.CREATE_BRANCH){
-  throw('Invalid option pair: You cannot use --feature and --createBranch at the same time.');
+  throw(new Error('Invalid option pair: You cannot use --feature and --createBranch at the same time.'));
   return 1;
 }
 
-if(process.env.CREATE_BRANCH && process.env.SCENARIO_KEY){
-  throw('Missing parameter: You must specify a scenario key.');
+if(process.env.CREATE_BRANCH && !process.env.SCENARIO_KEY){
+  throw(new Error('Missing parameter: You must specify a scenario key.'));
   return 1;
 }
 
@@ -85,6 +85,6 @@ try {
         }
     }
 } catch(e) {
-    throw('Error: '+e);
+    throw(e);
     return 1;
 }

@@ -69,5 +69,28 @@ describe('Sync Tests', function(){
                 done();
             });
         });
+
+        it.skip('should sync only a single scenario and create a branch for it', function(done){
+            process.env.SCENARIO_KEY = 'KOSH-4';
+            process.env.CREATE_BRANCH = true;
+
+            Kosher.sync(testConfigPath, function(result){
+                result.should.equal(0);
+
+                done();
+            }); 
+        });
+
+        it('should sync only a single scenario and create a branch for it from a specified remote', function(done){
+            process.env.SCENARIO_KEY = 'KOSH-4';
+            process.env.CREATE_BRANCH = true;
+            process.env.defaultSourceBranch = 'origin/develop';
+
+            Kosher.sync(testConfigPath, function(result){
+                result.should.equal(0);
+
+                done();
+            }); 
+        });
     });
 });

@@ -105,7 +105,7 @@ describe('Command Tests', function(){
             });
         });
 
-        it.skip('should sync a single scenario from JIRA', function(done){
+        it('should sync a single scenario from JIRA', function(done){
             cmd(bin+' --scenario KOSH-3', function(result){
                 result.should.equal(0);
 

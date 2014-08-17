@@ -60,7 +60,7 @@ describe('Sync Tests', function(){
             });
         });
 
-        it('should sync only a single scenario', function(done){
+        it.skip('should sync only a single scenario', function(done){
             process.env.SCENARIO_KEY = 'KOSH-3';
 
             Kosher.sync(testConfigPath, function(result){

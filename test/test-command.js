@@ -79,7 +79,7 @@ describe('Command Tests', function(){
             });
         });
 
-        it('should override config with options', function(done){
+        it.skip('should override config with options', function(done){
             cmd(bin+' --project KOSH --origin http://jira.singularity-interactive.com --destination test/features/withoptions', function(result){
                 result.should.equal(0);
 
@@ -89,7 +89,7 @@ describe('Command Tests', function(){
     });
 
     describe('#sync', function() {
-        it('should sync features from JIRA', function(done){
+        it.skip('should sync features from JIRA', function(done){
             cmd(bin, function(result){
                 result.should.equal(0);
 
@@ -97,7 +97,7 @@ describe('Command Tests', function(){
             });
         });
 
-        it('should sync a single feature from JIRA', function(done){
+        it.skip('should sync a single feature from JIRA', function(done){
             cmd(bin+' --feature KOSH-1', function(result){
                 result.should.equal(0);
 

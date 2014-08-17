@@ -53,14 +53,14 @@ describe('Sync Tests', function(){
 
             Kosher.sync(testConfigPath, function(result){
                 delete process.env.jiraUrl;
-                
+
                 result.should.not.equal(0);
 
                 done();
             });
         });
 
-        it.skip('should sync only a single scenario', function(done){
+        it('should sync only a single scenario', function(done){
             process.env.SCENARIO_KEY = 'KOSH-3';
 
             Kosher.sync(testConfigPath, function(result){

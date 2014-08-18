@@ -15,9 +15,8 @@ var program = require('commander');
 
 program
   .version('0.0.1')
-  .usage('[options] [action: sync | config]')
+  .usage('[options] [action: sync | config | list]')
   .option('-v, --verbose', 'Display details about synced features.')
-  .option('-l, --list', 'List features.')
   .option('-f, --file <filepath>', 'Config file path [kosher.json]')
   .option('-F, --feature <issue_key>', 'JIRA Feature Issue to sync')
   .option('-S, --scenario <issue_key>', 'JIRA Scenario Issue to sync')
@@ -37,6 +36,7 @@ if(program.args.length == 0) {
 var configFilePath = (!!program.file)?program.file:'kosher.json';
 
 // specifier options
+if(program.verbose) process.env.VERBOSE = true;
 if(program.feature) process.env.FEATURE_KEY = program.feature;
 if(program.createBranch) {
   process.env.CREATE_BRANCH = true;
@@ -82,6 +82,12 @@ try {
                 return result;
             });
             break;
+        }
+        case "list":
+        {
+            Kosher.list.list(configFilePath, function(result){
+                return result;
+            });
         }
     }
 } catch(e) {

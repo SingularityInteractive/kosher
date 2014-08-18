@@ -1,6 +1,6 @@
 {
   "name": "jira-kosher",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Gherkin/JIRA Automator",
   "main": "./lib/kosher.js",
   "bin": {

@@ -113,12 +113,22 @@ describe('Command Tests', function(){
             });
         });
 
-        it('should sync a single scenario and create a branch', function(done){
+        it.skip('should sync a single scenario and create a branch', function(done){
             cmd(bin+' --createBranch KOSH-3', function(result){
                 result.should.equal(0);
 
                 done();
             });
         })
+    });
+
+    describe('#list', function() {
+        it.skip('should list features', function(done){
+            cmd(bin+' list', function(result){
+                result.should.equal(0);
+
+                done();
+            });
+        });
     });
 });

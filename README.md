@@ -43,13 +43,22 @@ You will be prompted for the following values:
 - **Use Components as Tags** - Whether components on issues should be added as tags to the generated features/scenarios
 - **Use Versions as Tags** - Whether Fix Versions should be added as tags to the generated features/scenarios
 - **Assignee** - Whether the assignee should be added as a tag to the generated features/scenarios
+- **Default Source Branch** - When creating a branch from a scenario, this is the source branch to branch from
 
 ### Syncing
-To generate/update Gherkin .feature files:
+To generate/update Gherkin .feature files from all features in JIRA:
 `$ kosher` or `$ kosher sync`
 
 To sync only a single feature issue and its scenarios:
-`$ kosher -i <issueKey>`
+`$ kosher -F <issueKey>`
+
+To sync only a single scenario issue and its feature:
+`$ kosher -S <issueKey>`
+
+To generate a branch for a scenario issue and sync it:
+`$ kosher -b <issueKey>`
+
+*Note: If your working directory is clean, this will checkout the new branch before syncing the issue.*
 
 ### Multiple Configurations
 In some cases, you may want to use different configurations in the same project.
@@ -59,3 +68,11 @@ To create custom kosher configs:
 
 To sync using a custom kosher config:
 `$ kosher sync -f <file>`
+
+### Configuration override options
+Some configuration options may be overriden when running sync:
+
+`'-P, --project <project_key>': JIRA Project to sync`
+`'-s, --sourceBranch <remote_branch_name>': Source branch to create a new branch from`
+`'-o, --origin <jira_url>': Origin (JIRA Url)`
+`'-d, --destination <features_path>': Destination for generated feature files`
